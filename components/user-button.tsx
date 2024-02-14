@@ -14,15 +14,14 @@ export default async function UserButton() {
   const session = await auth()
   if (!session?.user) return <SignIn />
   return (
-    <DropdownMenu>
+    <><p>{session.user.email}</p><DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative w-8 h-8 rounded-full">
           <Avatar className="w-8 h-8">
             {session.user.image && (
               <AvatarImage
                 src={session.user.image}
-                alt={session.user.name ?? ""}
-              />
+                alt={session.user.name ?? ""} />
             )}
             <AvatarFallback>{session.user.email}</AvatarFallback>
           </Avatar>
@@ -43,6 +42,6 @@ export default async function UserButton() {
           <SignOut />
         </DropdownMenuItem>
       </DropdownMenuContent>
-    </DropdownMenu>
+    </DropdownMenu></>
   )
 }
